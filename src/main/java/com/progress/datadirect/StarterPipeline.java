@@ -80,10 +80,10 @@ public class StarterPipeline {
     
 	PCollection<List<String>> rows = p.apply(JdbcIO.<List<String>>read()
     		.withDataSourceConfiguration(JdbcIO.DataSourceConfiguration.create(
-            "com.ddtek.jdbc.ddhybrid.DDHybridDriver", "jdbc:datadirect:ddhybrid://<HDP Server>;hybridDataPipelineDataSource=Oracle")
-            .withUsername("USER")
-            .withPassword("Password"))
-    		.withQuery("SELECT * FROM TEST01.CUSTOMER")
+            "com.ddtek.jdbc.sforce.SForceDriver", "jdbc:datadirect:sforce://login.salesforce.com;SecurityToken=<Security Token>")
+            .withUsername("<username>")
+            .withPassword("<password>"))
+    		.withQuery("SELECT * FROM SFORCE.NOTE")
     		.withCoder(ListCoder.of(StringUtf8Coder.of()))
     		.withRowMapper(new JdbcIO.RowMapper<List<String>>() {
                 public List<String> mapRow(ResultSet resultSet) throws Exception {
@@ -116,8 +116,8 @@ public class StarterPipeline {
 	            	   List<String> record = c.element();
 	 
 	            	   List<String> record_copy = new ArrayList(record);
-	            	   String hashedEmail = hashemail(record.get(11));
-	            	   record_copy.set(11, hashedEmail);
+	            	   //String hashedEmail = hashemail(record.get(11));
+	            	   //record_copy.set(11, hashedEmail);
 	            	   
 	            	   c.output(record_copy);
 	            	   
@@ -147,7 +147,7 @@ public class StarterPipeline {
 	//Write Table Rows to BigQuery			
 	 tableRows.apply(BigQueryIO.writeTableRows()
 			 .withSchema(schema)
-       	     .to("nodal-time-161120:Oracle.CUSTOMER")
+       	     .to("nodal-time-161120:Salesforce.NOTE")
        	     .withWriteDisposition(BigQueryIO.Write.WriteDisposition.WRITE_APPEND));
        	  	
 
