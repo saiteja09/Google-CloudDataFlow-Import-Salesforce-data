@@ -1,6 +1,5 @@
-# CloudDataFlow-ETL-OnPremise-JDBC
-ETL OnPremises Data to Google BigQuery using Google Cloud Data Flow via JDBC driver
+# CloudDataFlow-ETL-SaaS-JDBC
+ETL Salesforce Data to Google BigQuery using Google Cloud Data Flow via JDBC driver
 
-Simple Project that demonstrates how you can import data into Google Big Query via Google Cloud Data Flow and Progress DataDirect Hybrid Data Pipeline.
+Starter code sample for importing Salesforce data in to Google BigQuery using Google DataFlow and DataDirect Salesforce JDBC driver 
 
-Full Tutorial: https://www.progress.com/tutorials/cloud-and-hybrid/etl-on-premises-oracle-data-to-google-bigquery-using-google-cloud-dataflow
